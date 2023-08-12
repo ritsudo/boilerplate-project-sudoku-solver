@@ -10,6 +10,7 @@ const runner            = require('./test-runner');
 
 const app = express();
 
+process.env.NODE_ENV = 'test';
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use(cors({origin: '*'})); //For FCC testing purposes only
 
@@ -36,7 +37,7 @@ app.use(function(req, res, next) {
 });
 
 //Start our server and tests!
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 80
 app.listen(PORT, function () {
   console.log("Listening on port " + PORT);
   // process.env.NODE_ENV='test'

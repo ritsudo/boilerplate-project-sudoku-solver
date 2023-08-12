@@ -8,11 +8,19 @@ module.exports = function (app) {
 
   app.route('/api/check')
     .post((req, res) => {
-
+		if (!req.body) {
+			res.json({error: 'Invalid request'})
+		} else {
+			res.json(solver.validate(req.body))
+		}
     });
     
   app.route('/api/solve')
     .post((req, res) => {
-
+		if (!req.body.puzzle) {
+			res.json({error: 'Required field missing'});
+		} else {
+			res.json(solver.solve(req.body.puzzle))
+		}
     });
 };
